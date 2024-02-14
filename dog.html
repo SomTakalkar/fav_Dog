@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Code</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background:#ff8533;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-style: italic;
+
+        }
+        img {
+            width: 500px;
+            height: 300px;
+            object-fit: fill;
+            margin: 10px;
+        }
+        .dog-card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .dog-info {
+            flex: 1;
+            padding: 10px;
+        }
+        select, input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome, Dog Person!</h1>
+<img src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvczY5LW1pbnR5LWFlLTAwMS1sLWpvYjYxMi1remV6M2dmNy5wbmc.png"  alt="Happy Dog">
+<div class="dog-card">
+    <div class="dog-info">
+        <h2>Choose your perfect pup:</h2>
+        <select id="dog-breed">
+            <option value="">Select Breed</option>
+            <option value="golden-retriever">Golden Retriever</option>
+            <option value="french-bulldog">French Bulldog</option>
+            <option value="beagle">Beagle</option>
+            <option value="corgi">Corgi</option>
+        </select>
+        <p>What activities do you like?</p>
+        <input type="checkbox" id="activity-hiking"> Hiking
+        <input type="checkbox" id="activity-swimming"> Swimming
+        <input type="checkbox" id="activity-cuddling"> Cuddling
+        <input type="checkbox" id="activity-sleeping"> Sleeping
+        <button onclick="showMatchingDogs()">Find my match!</button>
+    </div>
+    <div class="dog-image">
+    </div>
+</div>
+<script>
+    function showMatchingDogs() {
+        const breed = document.getElementById("dog-breed").value;
+        const activities = [];
+        if (document.getElementById("activity-hiking").checked) {
+            activities.push("hiking");
+        }
+        if (document.getElementById("activity-swimming").checked) {
+            activities.push("swimming");
+        }
+        if (document.getElementById("activity-cuddling").checked) {
+            activities.push("cuddling");
+        }
+        // Replace this with your logic to find a matching dog based on breed and activities
+        // and update the image in the "dog-image" div.
+        alert("Here's your perfect pup!");
+    }
+    const image = document.querySelector('img');
+    const select = document.getElementById('dog-breed');
+
+    // Define image URLs for each breed
+    const dogImages = {
+        'golden-retriever': 'https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors.jpg',
+        'beagle': 'https://www.akc.org/wp-content/uploads/2021/01/Beagle-puppy-standing-in-the-grass-1-500x486.jpeg',
+        'french-bulldog':'https://image.petmd.com/files/styles/978x550/public/2022-10/french-bulldog.jpeg',
+        'corgi': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8CjrHKKCSsKhqI1rgrAzCd48BBxYYZN8kuFUhAn3ZPg&s',
+    };
+    function changeBackgroundImage() {
+        const selectedBreed = select.value;
+        if (selectedBreed in dogImages) {
+            // Update image src attribute with the appropriate URL
+            image.src = dogImages[selectedBreed];
+        } else {
+            // If no breed is selected, use the default image
+            image.src = 'https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvczY5LW1pbnR5LWFlLTAwMS1sLWpvYjYxMi1remV6M2dmNy5wbmc.png';
+        }
+    }
+
+    // Attach the changeBackgroundImage function to the select element's change event
+    select.addEventListener('change', changeBackgroundImage);
+
+    // Call the function initially to set the default image
+    changeBackgroundImage();
+</script>
+</body>
+</html>
